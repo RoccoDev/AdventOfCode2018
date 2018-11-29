@@ -30,6 +30,6 @@ fun numberToNumeralString(number: Int): String {
         }
     }
 
-    return builder.toString()
+    return builder.toString().toLowerCase()
 
 }
