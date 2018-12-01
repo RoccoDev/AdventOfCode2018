@@ -31,12 +31,7 @@ class Day1 : DailyChallenge {
         var count = 0
 
         lines.forEach {
-            if(it.startsWith("-")) {
-                count -= Math.abs(it.toInt())
-            }
-            else {
-                count += it.replace("+", "").toInt()
-            }
+            count += it.toInt()
         }
 
         return count
