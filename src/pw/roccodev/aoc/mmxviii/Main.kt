@@ -10,18 +10,21 @@ fun main(args: Array<String>) {
     val day = LocalDate.now().dayOfMonth
     val romanDay = numberToNumeralString(day)
 
-    val todayClass = Class.forName("pw.roccodev.aoc.mmxviii.days.$romanDay.Day$day")
+    val todayClass: Class<DailyChallenge> = Class.forName("pw.roccodev.aoc.mmxviii.days.$romanDay.Day$day")
+            as Class<DailyChallenge>
 
     // Instantiate the class and run the task
 
     val inst = todayClass.getConstructor().newInstance()
-    val now = System.currentTimeMillis()
-
-    val part = 1 // Change to run part 2
 
     println("Starting...")
-    val result = todayClass.methods.find { it.name == "part$part" }?.invoke(inst)
-    println("Result: $result")
-    println("Done in ${System.currentTimeMillis() - now}ms")
+    run(1, todayClass, inst)
+    run(2, todayClass, inst)
+}
 
+private fun run(part: Int, cls: Class<DailyChallenge>, inst: Any) {
+    val now = System.currentTimeMillis()
+    val result = cls.methods.find { it.name == "part$part" }?.invoke(inst)
+    println("Result for Part $part: $result")
+    println("Part $part done in ${System.currentTimeMillis() - now}ms")
 }

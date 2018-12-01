@@ -14,18 +14,12 @@ class Day1 : DailyChallenge {
 
         while(true) {
             for (line in lines) {
-                if (line.startsWith("-")) {
-                    count -= Math.abs(line.toInt())
-                } else {
-                    count += line.replace("+", "").toInt()
-                }
+                count += line.toInt()
                 if(cachedFrequencies.contains(count)) {
                     return count
                 }
                 cachedFrequencies.add(count)
             }
-
-            println("No duplicates found, retrying. Count: $count")
 
         }
 
